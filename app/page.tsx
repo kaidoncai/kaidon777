@@ -93,7 +93,7 @@ export default function Home() {
     }
   }
 
-  const formatDeadline = (deadline: string) => {
+  const _formatDeadline = (deadline: string) => {
     const date = new Date(deadline);
     return date.toLocaleString('zh-CN', {
       year: 'numeric',
@@ -242,7 +242,7 @@ export default function Home() {
                     <div className={styles.timeGroup}>
                       <div className={styles.deadlineTime}>
                         <span className={styles.timeLabel}>计划时间：</span>
-                        <span className={styles.timeValue}>{formatDateTime(task.deadline)}</span>
+                        <span className={styles.timeValue}>{_formatDeadline(task.deadline)}</span>
                       </div>
                       {task.status === '已完成' && task.completedAt && (
                         <div className={`${styles.completedTime} ${
