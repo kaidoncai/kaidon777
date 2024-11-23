@@ -1,0 +1,615 @@
+.main {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.timeInput {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.taskInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.addButton {
+  padding: 8px 16px;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #ff6666;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  gap: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.taskItem:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.priority_border_普通 {
+  border-left-color: #3498db;
+}
+
+.priority_border_紧急 {
+  border-left-color: #e67e22;
+}
+
+.priority_border_非常紧急 {
+  border-left-color: #e74c3c;
+}
+
+.taskHeader {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.taskBody {
+  flex: 1;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.taskContent {
+  font-size: 16px;
+  color: #2c3e50;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.taskControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 15px;
+  border-top: 1px solid #eee;
+}
+
+.statusGroup, .messageGroup, .actionButtons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.statusSelect, .prioritySelect {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.editButton, .deleteButton, .saveButton, .cancelButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.editButton:hover, .deleteButton:hover, .saveButton:hover, .cancelButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.statusMessage, .priorityMessage, .remainingTime {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.editContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.editInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.editButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.taskNumber {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #4a4a4a;
+  color: white;
+  flex: 0 0 100px;
+  text-align: center;
+}
+
+.deadlineTime {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  color: #666;
+  flex: 0 0 100px;
+  text-align: center;
+}
+
+.待执行 {
+  background-color: #ffd700;
+  color: #000;
+}
+
+.执行中 {
+  background-color: #87ceeb;
+  color: #000;
+}
+
+.已完成 {
+  background-color: #90ee90;
+  color: #000;
+}
+
+.statusMessage {
+  padding: 4px 8px;
+  border-radius: 4px;
+  min-width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.message_待执行 {
+  background-color: #8B4513;
+}
+
+.message_执行中 {
+  background-color: #006400;
+}
+
+.message_已完成 {
+  background-color: #8b0000;
+}
+
+.overdue {
+  background-color: #808080;
+}
+
+.prioritySelect {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  min-width: 100px;
+}
+
+.priorityMessage {
+  padding: 4px 8px;
+  border-radius: 4px;
+  min-width: 80px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.priority_普通 {
+  background-color: #3498db;  /* 蓝色 */
+}
+
+.priority_紧急 {
+  background-color: #e67e22;  /* 橙色 */
+}
+
+.priority_非常紧急 {
+  background-color: #e74c3c;  /* 红色 */
+  animation: blink 1s infinite;  /* 添加闪烁效果 */
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.editContainer {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.editInput {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.editButton, .deleteButton, .saveButton, .cancelButton {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.editButton {
+  background-color: #3498db;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+}
+
+.saveButton {
+  background-color: #2ecc71;
+}
+
+.cancelButton {
+  background-color: #95a5a6;
+}
+
+.editButton:hover, .deleteButton:hover, .saveButton:hover, .cancelButton:hover {
+  opacity: 0.9;
+}
+
+.remainingTimeContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 160px;
+}
+
+.remainingTimeLabel {
+  color: #666;
+  font-weight: normal;
+}
+
+.remainingTimeValue {
+  font-weight: bold;
+}
+
+.remainingTimeText {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.remainingTimeContainer.待执行 {
+  background-color: #fff3cd;
+  border: 1px solid #ffd700;
+  color: #856404;
+}
+
+.remainingTimeContainer.执行中 {
+  background-color: #cce5ff;
+  border: 1px solid #87ceeb;
+  color: #004085;
+}
+
+.remainingTimeContainer.已完成 {
+  background-color: #d4edda;
+  border: 1px solid #90ee90;
+  color: #155724;
+}
+
+.remainingTimeContainer.overdueTime {
+  background-color: #fff5f5;
+  border: 1px solid #fc8181;
+  color: #c53030;
+  animation: pulseOverdue 2s infinite;
+}
+
+.overdueValue {
+  color: #e53e3e;
+  font-weight: bold;
+}
+
+@keyframes pulseOverdue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(229, 62, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+  }
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  border-radius: 10px;
+  color: white;
+}
+
+.mainTitle {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.subTitle {
+  font-size: 16px;
+  margin: 10px 0 0;
+  opacity: 0.8;
+}
+
+.inputSection {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  margin: 0 0 15px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.taskListSection {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.headerItem {
+  flex: 0 0 100px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.headerItemLarge {
+  flex: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.timeInfo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.deadlineTime, .completedTime {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timeLabel {
+  color: #666;
+  font-weight: 500;
+}
+
+.deadlineTime {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.completedTime {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* 已完成任务的特殊样式 */
+.taskItem[data-status='已完成'] {
+  opacity: 0.8;
+  background-color: #f8f9fa;
+}
+
+.timeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeInfo {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.deadlineTime, .completedTime {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 280px;
+}
+
+.completedEarly {
+  background-color: #c6f6d5;
+  color: #276749;
+  border: 1px solid #9ae6b4;
+}
+
+.completedLate {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+  border: 1px solid #feb2b2;
+}
+
+.completedEarlyTime {
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+  color: #276749;
+}
+
+.completedLateTime {
+  background-color: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #9b2c2c;
+}
+
+.earlyValue {
+  color: #276749;
+  font-weight: bold;
+}
+
+.lateValue {
+  color: #9b2c2c;
+  font-weight: bold;
+}
+
+.timeLabel {
+  color: #4a5568;
+  font-weight: 500;
+  min-width: 85px;
+}
+
+/* 更新表头样式 */
+.headerNumber {
+  flex: 0 0 80px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.headerTime {
+  flex: 0 0 200px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.headerContent {
+  flex: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.headerStatus, .headerPriority, .headerHint, .headerTimeStatus, .headerAction {
+  flex: 0 0 120px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* 更新时间信息样式 */
+.timeInfoWrapper {
+  flex: 0 0 200px;
+  padding: 0 10px;
+}
+
+.timeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deadlineTime, .completedTime {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  border: 1px solid #e2e8f0;
+}
+
+.timeLabel {
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.timeValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+/* 完成时间的样式 */
+.completedEarly {
+  background-color: #f0fff4;
+  border-color: #9ae6b4;
+}
+
+.completedLate {
+  background-color: #fff5f5;
+  border-color: #feb2b2;
+}
+
+/* 调整任务项布局 */
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+} 
